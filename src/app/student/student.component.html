@@ -1,0 +1,197 @@
+<!-- Survey Form -->
+<body>
+<header>
+        <span>George Mason University </span><br>
+        <span>Computer Science Survey Page</span>
+
+    </header>
+    <form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()" name='scheduleForm' id="scheduleId">
+        <div class="surveyDetails" *ngIf="showSuccess">
+            <div>
+
+                <div class="survey-Details">
+                    <div class="nameDetails">
+                        <div style="display: flex;padding-top: 10px;">
+                            <span class="note">*</span>
+                            <div style="center: 10px;font-size: 20px;">required fields</div>
+                        </div>
+                        <!-- details of user's firstname and lastname -->
+                        <fieldset>
+                            <legend align:center>Survey Information</legend>
+                            <table class="w3-table" align:center>
+                                <td><label>UserID <span class="note">*</span> </label></td>
+                                <td><input style="width: 100%;" type="text" formControlName="sid" id="sid" mValidateOnBlur required/></td>
+                                <tr>
+                                    <td><label>Firstname <span class="note">*</span> </label></td>
+                                    <td><input style="width: 100%;" title="Last name followed by first name" type="text" formControlName="sname" id="sname" mValidateOnBlur required/></td>
+                                </tr>
+
+                                <tr>
+                                    <td><label>Lastname <span class="note">*</span> </label></td>
+                                    <td><input style="width: 100%;" title="Last name followed by first name" type="text" formControlName="lname" id="lname" mValidateOnBlur required/></td>
+                                </tr>
+
+
+
+
+                                <!-- user input for address -->
+                                <tr>
+                                    <td><label>Street Address <span class="note">*</span></label></td>
+                                    <td><input style="width: 100%;" type="text" title="House/Apt number + Street name" formControlName="saddress" id="saddress"  mValidateOnBlur  /></td>
+                                </tr>
+
+
+                                <!--user input for state, city and zip-->
+                                <tr>
+                                    <td><label>City <span class="note">*</span></label></td>
+                                    <td><input style="width: 100%;" type="text" formControlName="scity" id="scity" mValidateOnBlur ></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Zip Code <span class="note">*</span></label></td>
+                                    <td><input style="width: 100%;" id="zipcode" type="number" formControlName="szip" id="szip" pattern="^\d{5}(?:[-\s]\d{4})?$" mValidateOnBlur  /> <br />
+                                        <label id="zip-err"></label></td>
+                                </tr>
+                                <tr>
+                                    <td><label>State <span class="note">*</span></label></td>
+                                    <td><input style="width: 100%;" type="text" formControlName="sstate" id="sstate" mValidateOnBlur ></td>
+                                </tr>
+
+
+
+
+                                <!-- user input for telephone number -->
+                                <tr>
+                                    <td><label>Telephone <span class="note">*</span></label></td>
+                                    <td><input style="width: 100%;" id="telephone" type="tel" formControlName="stel" id="stel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="(xxx) xxx-xxxx" mValidateOnBlur autocomplete="on" formnovalidate required /></td>
+                                </tr>
+
+
+                                <!-- user input for email address -->
+                                <tr>
+                                    <td><label>Email<span class="note">*</span></label></td>
+                                    <td><input type="email" style="width: 100%;" id="email"  formControlName="semail" id="semail" required placeholder="one@gmail.com" mValidateOnBlur autocomplete="on" formnovalidate required /></td>
+                                </tr>
+                                <!-- user input for url -->
+                                <tr>
+                                    <td><label>URL</label></td>
+                                    <td><input type="url" style="width: 100%;" id="url"  placeholder="https://www.url.com/" formControlName="surl" id="surl" placeholder="https://www.url.com/" mValidateOnBlur autocomplete="on" formnovalidate  /></td>
+                                </tr>
+
+                                <!-- user input for date of survey -->
+                                <tr>
+                                    <td><label>Survey date <span class="note">*</span></label></td>
+                                    <td><input style="width: 100%;" id="date" type="date" formControlName="sdate" id="sdate"  mValidateOnBlur autocomplete="on" formnovalidate  /></td>
+                                </tr>
+
+
+                                <!-- user input for graduation month -->
+                                <tr>
+                                    <td><label>High School Graduation </label></td>
+                                    <td><input style="width: 100%;" id="grad_month" type="text" formControlName="sgradmonth" id="sgradmonth" required placeholder="month" list="months" mValidateOnBlur autocomplete="on" formnovalidate required />
+                                        <datalist id="months">
+                      <option value="January"></option>
+                      <option value="February"></option>
+                      <option value="March"></option>
+                      <option value="April"></option>
+                      <option value="May"></option>
+                      <option value="June"></option>
+                      <option value="July"></option>
+                      <option value="August"></option>
+                      <option value="September"></option>
+                      <option value="October"></option>
+                      <option value="November"></option>
+                      <option value="December"></option>
+                    </datalist> <input style="width: 100%;" id="grad_year" type="number" formControlName="sgradyear" id="sgradyear" min="1900" max="2020" required placeholder="yyyy" mValidateOnBlur autocomplete="on" formnovalidate required
+                                        />
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+
+
+
+
+                        <fieldset>
+                            <legend>Campus feedback</legend>
+                            <table class="w3-table">
+                                <tr>
+                                    <td><label>What did you like the most about GMU? </label></td>
+                                    <td><input name="check" (change)="changeCheckboxValue($event, 'scheck1')" type="checkbox" value="Students" formControlName="scheck1" />Students
+                                        <input name="check" (change)="changeCheckboxValue($event, 'scheck2')" type="checkbox" value="Location" formControlName="scheck2" />Location
+                                        <input name="check" (change)="changeCheckboxValue($event, 'scheck3')" type="checkbox" value="Campus" formControlName="scheck3" />Campus
+                                        <input name="check" (change)="changeCheckboxValue($event, 'scheck4')" type="checkbox" value="Atmosphere" formControlName="scheck4" />Atmosphere
+                                        <input name="check" (change)="changeCheckboxValue($event, 'scheck5')" type="checkbox" value="Dorm Rooms" formControlName="scheck5" />Dorm Rooms
+                                        <input name="check" (change)="changeCheckboxValue($event, 'scheck6')" type="checkbox" value="Sports" formControlName="scheck6" />Sports
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>How did you hear about us ?</label></td>
+                                    <td><input name="interest" type="radio" value="Friends" required formControlName="radioBtn" />Friends
+                                        <input name="interest" type="radio" value="Television" required formControlName="radioBtn" />Television
+                                        <input name="interest" type="radio" value="Internet" required formControlName="radioBtn" />Internet
+                                        <input name="interest" type="radio" value="Other" required formControlName="radioBtn" />Other
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><label>How likey would you recommend GMU to others? </label></td>
+                                    <td><select id="recommend" required formControlName="likeliness">
+                          <option>--Select--</option>
+                          <option>Very Likey</option>
+                          <option>Likey</option>
+                          <option>Unlikey</option>
+                      </select></td>
+                                </tr>
+                            </table>
+
+                        </fieldset>
+
+
+                        <!--10 comma seperated numbers display-->
+
+
+                        <fieldset>
+                            <legend>Please enter 10 comma separated numbers</legend>
+                            <table class="w3-table">
+                                <tr>
+                                    <td><label>Data</label></td>
+                                    <td><input style="width: 200%;" name="data" type="text" formControlName="sdata" id="sdata" (blur)="countChar()" title="To win a price enter 10 comma separated numbers between 1 to 100" formnovalidate/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                        <fieldset>
+                            <table class="w3-table">
+                              <tr >
+                              <td colspan=2 style="text-align: center;">
+                                 <button  (click)="submit()" class="button button1" id="schedule" type="button" value="SCHEDULE">Submit</button>
+
+                              <input type="Reset" value="Cancel" /></td>
+                              </tr>
+
+                            </table>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</body>
+
+
+<!--Simple acknowledgement display-->
+
+<div *ngIf="showSimpleAcknowledgement">
+    <h2>You have submitted the form successfully. Your response is recorded</h2>
+    
+</div>
+
+<footer>
+        <address>
+         <span>Mohana Krishna,Spurthi,Keerthana, Manish</span><br>
+         <span>GMU Computer Science,Fairfax,22030</span>
+        </address>
+
+    </footer>
+<router-outlet></router-outlet>

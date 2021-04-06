@@ -1,0 +1,9 @@
+<!-- Student Ids display page --> 
+<table style="width:100px">
+    <tr>
+        <th>StudentId</th>
+    </tr>
+    <tr *ngFor="let id of students">
+        <td><a [routerLink]="['/stdDetails', id]">{{id}}</a></td>
+    </tr>
+</table>

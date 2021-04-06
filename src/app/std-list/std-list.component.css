@@ -1,0 +1,9 @@
+
+
+/* Records Display Page CSS  */
+
+table, th, td {
+  border: 1px rgb(51, 8, 245) solid;
+  border-collapse: collapse;
+  margin-top: 50px;
+}
